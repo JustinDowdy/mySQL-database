@@ -131,13 +131,14 @@ function addEmployee() {
                 },
                 function (err) {
                     if (err) throw err;
-                    console.log('Your employee has been added!');
+                    console.log('Employee has been added.');
                     options();
             })
         })
     })
 };
 
+// option to add department
 function addDeparment() {
     inquirer
     .prompt([
@@ -155,14 +156,14 @@ function addDeparment() {
         var query = 'SELECT * FROM department';
         connection.query(query, function(err, res) {
         if(err)throw err;
-        console.log('Your department has been added!');
+        console.log('Department has been added.');
         console.table('All Departments:', res);
         options();
         })
     })
 };
 
-// add a role to the database
+// option to add role 
 function addRole() {
     connection.query('SELECT * FROM department', function(err, res) {
         if (err) throw err;
@@ -183,11 +184,11 @@ function addRole() {
                 name: 'Department',
                 type: 'list',
                 choices: function() {
-                    var deptArry = [];
+                    var deptoption = [];
                     for (let i = 0; i < res.length; i++) {
-                    deptArry.push(res[i].name);
+                    deptoption.push(res[i].name);
                     }
-                    return deptArry;
+                    return deptoption;
                 },
             }
         ]).then(function (answer) {
